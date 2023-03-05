@@ -25,10 +25,11 @@ Chinese.prototype.getAge = function(){
 }
 
 function inhertType(subType,ParType){
-    let T = {}
-    T.prototype = ParType.prototype
-    subType.prototype = new T()
-    subType.prototype.constructor = subType
+    const fn = function(){
+        this.constructor = subType
+    }
+    fn.prototype = ParType.prototype
+    subType.prototype = new fn()
 }
 inhertType(Chinese,Human)
 

@@ -21,8 +21,12 @@
         function DOM2JSON(domTree){
             if(!domTree) return 
             let rootObj = {
-                tagName:domTree.tagName,
-                children:[]
+                "tagName":`${domTree.tagName.toLowerCase()}`,
+                "attributes":[],
+                "children":[]
+            }
+            for(let key of domTree.attributes){
+                rootObj.attributes.push("{"+`${key.name}`+":"+`${key.value}`+"}")   
             }
             const children = domTree.children
             if(children){
