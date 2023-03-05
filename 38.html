@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全选</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>全选<input type='checkbox' id='all'></li>
+        <li>Java<input type='checkbox' class='item'></li>
+        <li>javaScript<input type='checkbox' class='item'></li>
+        <li>C++<input type='checkbox' class='item'></li>
+        <li>python<input type='checkbox' class='item'></li>
+        <li>.net<input type='checkbox' class='item'></li>
+    </ul>
+    <script>
+        let all = document.querySelector('#all')
+        let options = Array.from(document.querySelectorAll('.item'))
+        all.onchange = function(){
+            options.forEach(x=>{
+                x.checked = all.checked
+            })
+        }
+        options.forEach((item)=>{
+            item.onchanged = function(){
+                all.checked = options.every(x=>x.checked)
+            }
+        })
+    </script>
+</body>
+</html>

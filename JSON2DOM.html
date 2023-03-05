@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+let render_ = (vnode)=>{
+        let tag = vnode.tag.toLowerCase()
+        let attrs = vnode.attrs
+        let nodeMounted = document.createElement(tag)
+        if(attrs){
+            for(let key in attrs){
+                if(key.startsWith('on')){
+                    nodeMounted.setAttribute(key.slice(2),attrs[key])
+                }else{
+                    nodeMounted.setAttribute(key,attrs[key])
+                }
+            }
+        }
+        let children = vnode.children
+        if(children&&children.length>=0){
+            children.forEach(child=>nodeMounted.appendChild(render_(child)))
+        }
+        return nodeMounted
+    }
+
+
+const dom = {
+    tag: 'DIV',
+    attrs:{
+    id:'app'
+    },
+    children: [
+      {
+        tag: 'SPAN',
+        children: [
+          { tag: 'A', children: [] }
+        ]
+      },
+      {
+        tag: 'SPAN',
+        children: [
+          { tag: 'A', children: [] },
+          { tag: 'A', children: [] }
+        ]
+      }
+    ]
+  }
+
+  console.log(render_(dom))
+    </script>
+</body>
+</html>
+
