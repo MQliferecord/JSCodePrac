@@ -22,11 +22,11 @@
             if(!domTree) return 
             let rootObj = {
                 "tagName":`${domTree.tagName.toLowerCase()}`,
-                "attributes":[],
+                "attributes":{},
                 "children":[]
             }
             for(let key of domTree.attributes){
-                rootObj.attributes.push("{"+`${key.name}`+":"+`${key.value}`+"}")   
+                rootObj.attributes.push(`${key.name}`+":"+`${key.value}`+",")   
             }
             const children = domTree.children
             if(children){
