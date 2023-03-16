@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #card {
+        width: 256px;
+        height: 256px;
+        background: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #quickBtn {
+        width: 92px;
+        height: 27px;
+        padding: 5px;
+        background: white;
+        font-size: 16px;
+        line-height: 13.5px;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        display: none;
+    }
+</style>
+<script>
+    window.onload = function () {
+        let card = document.getElementById("card")
+        let quickBtn = document.getElementById("quickBtn")
+
+        card.onmouseenter = function () {
+            quickBtn.style.display = "block";
+        }
+        card.onmouseleave = function () {
+            quickBtn.style.display = "none";
+        }
+
+        card.onclick = function () {
+            alert("card look")
+        }
+        quickBtn.onclick = function (e) {
+            e.stopPropagation();
+            alert("quick look click")
+        }
+    }
+</script>
+
+<body>
+    <div id="card">
+        <div id="quickBtn">quick look</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        function preloadImage(imgUrls, timeout) {
+            let imgHandler = (url) => {
+                return new Promise((resolve, reject) => {
+                    let img = new Image()
+                    img.onload = () => {
+                        resolve(img)
+                    }
+                    img.onerror = () => {
+                        reject("err")
+                    }
+                    img.src = url
+                })
+            }
+            let timer = () => {
+                return new Promise(resolve => {
+                    debugger
+                    setTimeout(() => {
+                        resolve("resource load cost over x ms")
+                    }, timeout)
+                })
+            }
+            imgUrls.map(url => imgHandler(url))
+            return Promise.race([imgUrls, timer()]).then(res => {
+                console.log(res)
+            }, err => {
+                console.log(err)
+            })
+        }
+
+        preloadImage(['images/PDD_1.png', 'images/PDD_2.png', 'images/PDD_3.png'], 1000)
+    </script>
+</body>
+
+</html>

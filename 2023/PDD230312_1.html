@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="welcome"></div>
+</body>
+<script>
+    function generateAndInsertContent(){
+        let wes = document.getElementById("welcome");
+        let date = new Date()
+        //当前的时间戳
+        let dateNum = date.valueOf()
+        let year = date.getFullYear()
+        let date_ = new Date("2023-1-1")
+        //2023-1-1的时间戳
+        let datePre = date_.valueOf()
+        let day = Math.round((dateNum-datePre)/(60*60*24*1000))
+        let str = day<=180? "上":"下"
+        wes.innerHTML = `今天是${year}年的第<span style="color:red">${day}</span>,你好,${str}半年!`
+    }
+    generateAndInsertContent();
+</script>
+</html>

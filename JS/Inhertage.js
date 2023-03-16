@@ -32,4 +32,3 @@ function inhertType(subType,ParType){
     subType.prototype = new fn()
 }
 inhertType(Chinese,Human)
-

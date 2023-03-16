@@ -29,7 +29,7 @@
             })
         }
         options.forEach((item)=>{
-            item.onchanged = function(){
+            item.onchange = function(){
                 all.checked = options.every(x=>x.checked)
             }
         })
